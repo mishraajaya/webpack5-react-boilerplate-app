@@ -5,7 +5,6 @@ const path = require('path')
 const context = path.resolve(__dirname, '../../')
 
 const ESLintPlugin = require("eslint-webpack-plugin")
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const output = {
@@ -37,17 +36,26 @@ const _module = {
       }
     },
     {
-      test: /\.scss$/,
+      test: /\.(css|scss)$/,
       use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader'
+        {
+          loader: 'style-loader'
+        },
+        {
+          loader: 'css-loader'
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+          }
+        }
       ]
     }
   ]
 }
 
 const plugins = [
-  new MiniCssExtractPlugin(),
   new HtmlWebpackPlugin({ template: './src/index.html' }),
   new ESLintPlugin({
     extensions: ["js", "jsx", "ts", "tsx"],
