@@ -9,4 +9,4 @@ How to use:
 5. go to browser and access via: localhost:3000
 
 
-ENJOY !!!!
+ENJOY using the App!!!!
